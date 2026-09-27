@@ -7,7 +7,6 @@ USE project12;
 DROP TABLE IF EXISTS all_records;
 GO
 
-	
 CREATE TABLE all_records ([date] DATE, 
 					[weekday] VARCHAR(50),
 					[bomdod] VARCHAR(50),
@@ -67,10 +66,12 @@ SELECT *,
 		IIF([asr] IS NULL, 0, 1) [asr 01],
 		IIF([shom] IS NULL, 0, 1) [shom 01],
 		IIF([xufton] IS NULL, 0, 1) [xufton 01],
+
 		IIF([bomdod] IS NULL, 0, 1) + IIF([peshin] IS NULL, 0, 1) + IIF([asr] IS NULL, 0, 1) + 
 		IIF([shom] IS NULL, 0, 1) + IIF([xufton] IS NULL, 0, 1) + 
-		IIF([extra bomdod] IS NULL, 0, 1) + IIF([extra peshin] IS NULL, 0, 1) + IIF([extra asr] IS NULL, 0, 1) + 
-		IIF([extra shom] IS NULL, 0, 1) + IIF([extra xufton] IS NULL, 0, 1) [daily total]
+		IIF([extra bomdod] IS NULL, 0, [extra bomdod]) + IIF([extra peshin] IS NULL, 0, [extra peshin]) + IIF([extra asr] IS NULL, 0, [extra asr]) + 
+		IIF([extra shom] IS NULL, 0, [extra shom]) + IIF([extra xufton] IS NULL, 0, [extra xufton]) [daily total]
+
 INTO new_all_records
 FROM all_records
 --ORDER BY [date] DESC;
