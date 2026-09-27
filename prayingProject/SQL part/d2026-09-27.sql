@@ -7,6 +7,7 @@ USE project12;
 DROP TABLE IF EXISTS all_records;
 GO
 
+	
 CREATE TABLE all_records ([date] DATE, 
 					[weekday] VARCHAR(50),
 					[bomdod] VARCHAR(50),
